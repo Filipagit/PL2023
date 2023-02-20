@@ -1,4 +1,6 @@
 
+import matplotlib.pyplot as plt
+
 class Pessoa:
     def __init__(self, idade, sexo, tensao, colesterol, batimento, tem_doenca):
         self.idade = idade
@@ -35,7 +37,7 @@ class Distribuicao:
             else:
                 self.total_mulher_doenca += 1
 
-            # Atualiza distribuição por faixa etária
+            # Atualiza distribuiÃ§Ã£o por faixa etÃ¡ria
             faixa_etaria = self.get_faixa_etaria(pessoa.idade)
             if faixa_etaria not in self.doenca_por_faixa_etaria:
                 self.doenca_por_faixa_etaria[faixa_etaria] = [0, 0]
@@ -44,7 +46,7 @@ class Distribuicao:
             else:
                 self.doenca_por_faixa_etaria[faixa_etaria][1] += 1
 
-            # Atualiza distribuição por colesterol
+            # Atualiza distribuiÃ§Ã£o por colesterol
             nivel_colesterol = self.get_nivel_colesterol(pessoa.colesterol)
             if nivel_colesterol not in self.doenca_por_colesterol:
                 self.doenca_por_colesterol[nivel_colesterol] = [0, 0]
@@ -68,15 +70,51 @@ class Distribuicao:
             total = contagem[0] + contagem[1]
             print(f'{faixa}\t{total}\t{contagem[0]}\t{contagem[1]}')
         print()
+
     def distribuicao_por_sexo(self):
         return {'Homens': [self.total_homem, self.total_homem_doenca],
                 'Mulheres': [self.total_mulher, self.total_mulher_doenca]}
 
     def distribuicao_por_faixa_etaria(self):
-        return self.imprime_distribuicao(self.doenca_por_faixa_etaria, 'Distribuição da Doença por Faixa Etária')
+        idades = []
+        freq_doencas = []
+        for faixa, contagem in self.doenca_por_faixa_etaria.items():
+            idades.append(faixa)
+            freq_doencas.append(contagem[0] + contagem[1])
+        plt.bar(idades, freq_doencas)
+        plt.xlabel('Idade')
+        plt.ylabel('FrequÃªncia de doenÃ§as') 
+        plt.title('DistribuiÃ§Ã£o de doenÃ§as por idade')
+        plt.show()
+
+        return self.imprime_distribuicao(self.doenca_por_faixa_etaria, 'DistribuiÃ§Ã£o da DoenÃ§a por Faixa EtÃ¡ria')
 
     def distribuicao_por_colesterol(self):
-        return self.imprime_distribuicao(self.doenca_por_colesterol, 'Distribuição da Doença por Níveis de Colesterol')
+        nivel = []
+        freq = []
+
+        for colestrol, contagem in self.doenca_por_colesterol.items():
+            nivel.append(colestrol)
+            freq.append(contagem[0] + contagem[1])
+        plt.bar(nivel, freq)
+        plt.xlabel('NÃ­vel de Colesterol')
+        plt.ylabel('FrequÃªncia de doenÃ§as') 
+        plt.title('DistribuiÃ§Ã£o da DoenÃ§a por NÃ­veis de Colesterol')
+        plt.show()
+        return self.imprime_distribuicao(self.doenca_por_colesterol, 'DistribuiÃ§Ã£o da DoenÃ§a por NÃ­veis de Colesterol')
+
+    def sexo_distribuicao(self):
+        sexo = ["Masculino", "Feminino"]
+        freq = [self.total_homem_doenca, self.total_mulher_doenca]
+
+        plt.bar(sexo, freq)
+        plt.xlabel('Sexo')
+        plt.ylabel('FrequÃªncia de doenÃ§as') 
+        plt.title('DistribuiÃ§Ã£o da DoenÃ§a por Sexo')
+        plt.show()
+
+        return self.imprime_distribuicao(distribuicao.distribuicao_por_sexo(), 'DistribuiÃ§Ã£o da DoenÃ§a por Sexo')
+
 
 def le_arquivo_csv(myheart):
     distribuicao = Distribuicao()
@@ -102,20 +140,17 @@ if __name__ == '__main__':
     arquivo_csv = 'myheart.csv'
     distribuicao = le_arquivo_csv(arquivo_csv)
 
-    # Imprime as distribuições
+    # Imprime as distribuiÃ§Ãµes
     print(f'Total de Pessoas: {distribuicao.total_pessoas}')
     print(f'Total de Pessoas do Sexo Masculino: {distribuicao.total_homem}')
     print(f'Total de Pessoas do Sexo Feminino: {distribuicao.total_mulher}')
-    print(f'Total de Pessoas com Doença: {distribuicao.total_doenca}')
-    print(f'Total de Homens com Doença: {distribuicao.total_homem_doenca}')
-    print(f'Total de Mulheres com Doença: {distribuicao.total_mulher_doenca}')
+    print(f'Total de Pessoas com DoenÃ§a: {distribuicao.total_doenca}')
+    print(f'Total de Homens com DoenÃ§a: {distribuicao.total_homem_doenca}')
+    print(f'Total de Mulheres com DoenÃ§a: {distribuicao.total_mulher_doenca}')
     print()
 
-    distribuicao.imprime_distribuicao(distribuicao.distribuicao_por_sexo(),
-                                      'Distribuição da Doença por Sexo')
+    distribuicao.sexo_distribuicao()
 
     distribuicao.distribuicao_por_faixa_etaria()
 
     distribuicao.distribuicao_por_colesterol()
-
-
