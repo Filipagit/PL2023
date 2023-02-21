@@ -83,11 +83,11 @@ class Distribuicao:
             freq_doencas.append(contagem[0] + contagem[1])
         plt.bar(idades, freq_doencas)
         plt.xlabel('Idade')
-        plt.ylabel('FrequÃªncia de doenÃ§as') 
-        plt.title('DistribuiÃ§Ã£o de doenÃ§as por idade')
+        plt.ylabel('Frequência de doenças') 
+        plt.title('Distribuição de doenças por idade')
         plt.show()
 
-        return self.imprime_distribuicao(self.doenca_por_faixa_etaria, 'DistribuiÃ§Ã£o da DoenÃ§a por Faixa EtÃ¡ria')
+        return self.imprime_distribuicao(self.doenca_por_faixa_etaria, 'Distribuição da Doença por Faixa Etaria')
 
     def distribuicao_por_colesterol(self):
         nivel = []
@@ -98,10 +98,10 @@ class Distribuicao:
             freq.append(contagem[0] + contagem[1])
         plt.bar(nivel, freq)
         plt.xlabel('NÃ­vel de Colesterol')
-        plt.ylabel('FrequÃªncia de doenÃ§as') 
-        plt.title('DistribuiÃ§Ã£o da DoenÃ§a por NÃ­veis de Colesterol')
+        plt.ylabel('Frequência de doenças') 
+        plt.title('Distribuição da Doença por Niveis de Colesterol')
         plt.show()
-        return self.imprime_distribuicao(self.doenca_por_colesterol, 'DistribuiÃ§Ã£o da DoenÃ§a por NÃ­veis de Colesterol')
+        return self.imprime_distribuicao(self.doenca_por_colesterol, 'Distribuição da Doença por Ni­veis de Colesterol')
 
     def sexo_distribuicao(self):
         sexo = ["Masculino", "Feminino"]
@@ -109,11 +109,11 @@ class Distribuicao:
 
         plt.bar(sexo, freq)
         plt.xlabel('Sexo')
-        plt.ylabel('FrequÃªncia de doenÃ§as') 
-        plt.title('DistribuiÃ§Ã£o da DoenÃ§a por Sexo')
+        plt.ylabel('Frequência de doenças') 
+        plt.title('Distribuição da Doença por Sexo')
         plt.show()
 
-        return self.imprime_distribuicao(distribuicao.distribuicao_por_sexo(), 'DistribuiÃ§Ã£o da DoenÃ§a por Sexo')
+        return self.imprime_distribuicao(distribuicao.distribuicao_por_sexo(), 'Distribuição da Doença por Sexo')
 
 
 def le_arquivo_csv(myheart):
@@ -144,9 +144,9 @@ if __name__ == '__main__':
     print(f'Total de Pessoas: {distribuicao.total_pessoas}')
     print(f'Total de Pessoas do Sexo Masculino: {distribuicao.total_homem}')
     print(f'Total de Pessoas do Sexo Feminino: {distribuicao.total_mulher}')
-    print(f'Total de Pessoas com DoenÃ§a: {distribuicao.total_doenca}')
-    print(f'Total de Homens com DoenÃ§a: {distribuicao.total_homem_doenca}')
-    print(f'Total de Mulheres com DoenÃ§a: {distribuicao.total_mulher_doenca}')
+    print(f'Total de Pessoas com Doença: {distribuicao.total_doenca}')
+    print(f'Total de Homens com Doença: {distribuicao.total_homem_doenca}')
+    print(f'Total de Mulheres com Doença: {distribuicao.total_mulher_doenca}')
     print()
 
     distribuicao.sexo_distribuicao()
