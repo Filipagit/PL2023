@@ -97,7 +97,7 @@ class Distribuicao:
             nivel.append(colestrol)
             freq.append(contagem[0] + contagem[1])
         plt.bar(nivel, freq)
-        plt.xlabel('NÃ­vel de Colesterol')
+        plt.xlabel('Nivel de Colesterol')
         plt.ylabel('Frequência de doenças') 
         plt.title('Distribuição da Doença por Niveis de Colesterol')
         plt.show()
