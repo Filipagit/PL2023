@@ -1,0 +1,26 @@
+{
+    "3162": {
+        "Número": "3162",
+        "Nome": "Cândido Faísca",
+        "Curso": "Teatro",
+        "Notas{3": "12",
+        "5}::media": "13",
+        "": ""
+    },
+    "7777": {
+        "Número": "7777",
+        "Nome": "Cristiano Ronaldo",
+        "Curso": "Desporto",
+        "Notas{3": "17",
+        "5}::media": "12",
+        "": "12"
+    },
+    "264": {
+        "Número": "264",
+        "Nome": "Marcelo Sousa",
+        "Curso": "Ciência Política",
+        "Notas{3": "18",
+        "5}::media": "19",
+        "": ""
+    }
+}
